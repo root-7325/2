@@ -14,6 +14,7 @@ class PhoneMenu
         int merlok = 0;
         Phone Menu = new Phone();
         var сall = "";
+        var probel = "";
         Console.WriteLine("               phone   ");
         Console.WriteLine("Write add to add new contact");
         Console.WriteLine("Write call to call someone");
@@ -50,7 +51,7 @@ class PhoneMenu
                         }
                         else
                         {
-                            Console.WriteLine("Calling " + сall); //a tyt che togda pravilno
+                            Console.WriteLine("Calling " + сall); //a tyt che
                             Console.WriteLine("No respond...");
                             break;
                         }
@@ -70,14 +71,18 @@ class PhoneMenu
                         {
 
                             Console.WriteLine($"Type message for {Count.Key}:");
-                            phoneSms.Add(Console.ReadLine() + $"{Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
+                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                             break;
-                        }
+                            }
+                            if (сall == probel)
+                            {
+                                break;
+                            }
                         else
                         {
-                            Console.WriteLine("Type message for " + call); //call doesn't exist in this kontekst
-                            phoneSms.Add(Console.ReadLine() + call, DateTime.Now.ToString("HH:mm:ss tt")); //tyt tozhe
+                            Console.WriteLine("Type message for "); //call doesn't exist in this kontekst
+                            phoneSms.Add(Console.ReadLine() + " ", DateTime.Now.ToString("HH:mm:ss tt")); //tyt tozhe
                             Console.WriteLine("Message sent.");
                         }
                         break;
@@ -90,7 +95,7 @@ class PhoneMenu
                 case "list":
                     foreach (var Count in phoneSms)
                     {
-                        Console.WriteLine($"{Count.Key}  +  {Count.Value}");
+                        Console.WriteLine($"{Count.Key} {Count.Value}");
                     }
                     break;
 
