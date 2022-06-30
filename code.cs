@@ -23,12 +23,11 @@ class PhoneMenu
 
         do
         {
-            int Contacts = 0;
             Menu.сommand = Console.ReadLine();
+            var call = "";
             switch (Menu.сommand)
             {
                 case "add":
-                    Contacts++;
                     Console.WriteLine("Adding new contact...\n");
                     Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
                     phoneBook.Add(Console.ReadLine(), Console.ReadLine());
@@ -51,7 +50,7 @@ class PhoneMenu
                         }
                         else
                         {
-                            Console.WriteLine("Calling " + сall); //a tyt che
+                            Console.WriteLine("Calling " + сall);
                             Console.WriteLine("No respond...");
                             break;
                         }
@@ -69,25 +68,36 @@ class PhoneMenu
 
                         if (сall == Count.Key)
                         {
-
                             Console.WriteLine($"Type message for {Count.Key}:");
                             phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                             break;
                             }
-                            if (сall == probel)
+                        
+                        if (сall == Count.Value)
+                        {
+                            Console.WriteLine($"Type message for {Count.Key}:");
+                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
+                            Console.WriteLine("Message sent.");
+                            break;
+                        }
+                        
+                        if (сall == probel)
                             {
                                 break;
                             }
+                        
                         else
                         {
-                            Console.WriteLine("Type message for "); //call doesn't exist in this kontekst
-                            phoneSms.Add(Console.ReadLine() + " ", DateTime.Now.ToString("HH:mm:ss tt")); //tyt tozhe
+                            Console.WriteLine("Type message for " + call);
+                            phoneSms.Add(Console.ReadLine() + call, DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                         }
                         break;
+                        
                     }
                     break;
+                    
 
                 case "":
                     break;
