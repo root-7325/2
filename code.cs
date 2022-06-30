@@ -19,7 +19,7 @@ class PhoneMenu
         Console.WriteLine("Write add to add new contact");
         Console.WriteLine("Write call to call someone");
         Console.WriteLine("Write sms to text someone");
-        Console.WriteLine("Write list/ to show each message, which you have sent");
+        Console.WriteLine("Write list to show each message, which you have sent");
 
         do
         {
