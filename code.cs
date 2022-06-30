@@ -10,14 +10,15 @@ class PhoneMenu
     static void Main()
     {
         Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+        Dictionary<string, string> phoneSms = new Dictionary<string, string>();
         int merlok = 0;
         Phone Menu = new Phone();
         var сall = "";
-        String Message = "";
-        Console.WriteLine("             phone   \n");
-        Console.WriteLine("Write add to add new contact\n");
-        Console.WriteLine("Write call to call someone\n");
-        Console.WriteLine("Write sms to text someone\n");
+        Console.WriteLine("               phone   ");
+        Console.WriteLine("Write add to add new contact");
+        Console.WriteLine("Write call to call someone");
+        Console.WriteLine("Write sms to text someone");
+        Console.WriteLine("Write list/ to show each message, which you have sent");
 
         do
         {
@@ -47,9 +48,12 @@ class PhoneMenu
                             Console.WriteLine("No respond...");
                             break;
                         }
-
-                        Console.WriteLine("Calling " + сall);
-                        Console.WriteLine("No respond...");
+                        else
+                        {
+                            Console.WriteLine("Calling " + сall); //a tyt che
+                            Console.WriteLine("No respond...");
+                            break;
+                        }
                     }
                     break;
 
@@ -66,15 +70,28 @@ class PhoneMenu
                         {
 
                             Console.WriteLine($"Type message for {Count.Key}:");
-                            Message = Console.ReadLine();
+                            phoneSms.Add(Console.ReadLine() + $"{Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                             break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Type message for " + call); //call doesn't exist in this kontekst
+                            phoneSms.Add(Console.ReadLine() + call, DateTime.Now.ToString("HH:mm:ss tt")); //tyt tozhe
+                            Console.WriteLine("Message sent.");
                         }
                         break;
                     }
                     break;
 
                 case "":
+                    break;
+
+                case "list":
+                    foreach (var Count in phoneSms)
+                    {
+                        Console.WriteLine($"{Count.Key}  +  {Count.Value}");
+                    }
                     break;
 
                 default:
