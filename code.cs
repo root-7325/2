@@ -50,7 +50,7 @@ class PhoneMenu
                         }
                         else
                         {
-                            Console.WriteLine("Calling " + сall); //a tyt che
+                            Console.WriteLine("Calling " + сall); //a tyt che togda pravilno
                             Console.WriteLine("No respond...");
                             break;
                         }
