@@ -3,12 +3,17 @@ using System.Collections.Generic;
 class Phone
 {
     public string сommand;
-    internal string probel;
+    public static Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+    public static Dictionary<string, string> phoneSms = new Dictionary<string, string>();
     internal string сall;
 }
 
 class PhoneMenu
 {
+    private static string сall;
+    private static string probel;
+    private static string call;
+
     static void Initialize()
     {
 
@@ -18,93 +23,110 @@ class PhoneMenu
         Console.WriteLine("Write sms to text someone");
         Console.WriteLine("Write list to show each message, which you have sent");
     }
+    static void Add()
+    {
+        Console.WriteLine("Adding new contact...\n");
+        Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
+        Phone.phoneBook.Add(Console.ReadLine(), Console.ReadLine());
+        Console.WriteLine("Succesfully added new contact.\n");
+    }
+    static void Call()
+    {
+        Console.WriteLine("Choose contact or number to call\n");
+
+        foreach (var Count in Phone.phoneBook)
+        {
+            Console.WriteLine($"{Count.Key}");
+            сall = Console.ReadLine();
+
+            if (сall == Count.Key)
+            {
+                Console.WriteLine($"Calling {Count.Key}...");
+                Console.WriteLine("No respond...");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Calling " + сall);
+                Console.WriteLine("No respond...");
+                break;
+            }
+        }
+    }
+    
+    static void Sms()
+    {
+        Console.WriteLine("Choose contact or number to send sms\n");
+
+        foreach (var Count in Phone.phoneBook)
+        {
+
+            Console.WriteLine($"{Count.Key}");
+            сall = Console.ReadLine();
+
+            if (сall == Count.Key)
+            {
+                Console.WriteLine($"Type message for {Count.Key}:");
+                Phone.phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
+                Console.WriteLine("Message sent.");
+                break;
+            }
+
+            if (сall == Count.Value)
+            {
+                Console.WriteLine($"Type message for {Count.Key}:");
+                Phone.phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
+                Console.WriteLine("Message sent.");
+                break;
+            }
+
+            if (сall == probel)
+            {
+                break;
+            }
+
+            else
+            {
+                Console.WriteLine("Type message for " + call);
+                Phone.phoneSms.Add(Console.ReadLine() + "+7" + call, DateTime.Now.ToString("HH:mm:ss tt"));
+                Console.WriteLine("Message sent.");
+            }
+            break;
+
+        }
+    }
+    static void List()
+    {
+        foreach (var Count in Phone.phoneSms)
+        {
+            Console.WriteLine($"{Count.Key} {Count.Value}");
+        }
+    }
     static void Main()
     {
         Phone Menu = new Phone();
-        Dictionary<string, string> phoneBook = new Dictionary<string, string>();
-        Dictionary<string, string> phoneSms = new Dictionary<string, string>();
         PhoneMenu.Initialize();
         do
         {
             Menu.сommand = Console.ReadLine();
-            string call = "";
             switch (Menu.сommand)
             {
                 case "add":
-
+                    PhoneMenu.Add();
+                    break;
                 case "call":
-                    Console.WriteLine("Choose contact or number to call\n");
-
-                    foreach (var Count in phoneBook)
-                    {
-                        Console.WriteLine($"{Count.Key}");
-                        Menu.сall = Console.ReadLine();
-
-                        if (Menu.сall == Count.Key)
-                        {
-                            Console.WriteLine($"Calling {Count.Key}...");
-                            Console.WriteLine("No respond...");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Calling " + Menu.сall);
-                            Console.WriteLine("No respond...");
-                            break;
-                        }
-                    }
+                    PhoneMenu.Call();
                     break;
 
                 case "sms":
-                    Console.WriteLine("Choose contact or number to send sms\n");
-
-                    foreach (var Count in phoneBook)
-                    {
-
-                        Console.WriteLine($"{Count.Key}");
-                        Menu.сall = Console.ReadLine();
-
-                        if (Menu.сall == Count.Key)
-                        {
-                            Console.WriteLine($"Type message for {Count.Key}:");
-                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
-                            Console.WriteLine("Message sent.");
-                            break;
-                        }
-
-                        if (Menu.сall == Count.Value)
-                        {
-                            Console.WriteLine($"Type message for {Count.Key}:");
-                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
-                            Console.WriteLine("Message sent.");
-                            break;
-                        }
-
-                        if (Menu.сall == Menu.probel)
-                        {
-                            break;
-                        }
-
-                        else
-                        {
-                            Console.WriteLine("Type message for " + call);
-                            phoneSms.Add(Console.ReadLine() + "+7" + call, DateTime.Now.ToString("HH:mm:ss tt"));
-                            Console.WriteLine("Message sent.");
-                        }
-                        break;
-
-                    }
+                    PhoneMenu.Sms();
                     break;
-
 
                 case "":
                     break;
 
                 case "list":
-                    foreach (var Count in phoneSms)
-                    {
-                        Console.WriteLine($"{Count.Key} {Count.Value}");
-                    }
+                    PhoneMenu.List();
                     break;
 
                 default:
@@ -115,4 +137,3 @@ class PhoneMenu
         } while (true);
     }
 }
-
