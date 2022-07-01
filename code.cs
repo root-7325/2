@@ -3,36 +3,34 @@ using System.Collections.Generic;
 class Phone
 {
     public string сommand;
+    internal string probel;
+    internal string сall;
 }
 
 class PhoneMenu
 {
-    static void Main()
+    static void Initialize()
     {
-        Dictionary<string, string> phoneBook = new Dictionary<string, string>();
-        Dictionary<string, string> phoneSms = new Dictionary<string, string>();
-        int merlok = 0;
-        Phone Menu = new Phone();
-        var сall = "";
-        var probel = "";
+
         Console.WriteLine("               phone   ");
         Console.WriteLine("Write add to add new contact");
         Console.WriteLine("Write call to call someone");
         Console.WriteLine("Write sms to text someone");
         Console.WriteLine("Write list to show each message, which you have sent");
-
+    }
+    static void Main()
+    {
+        Phone Menu = new Phone();
+        Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+        Dictionary<string, string> phoneSms = new Dictionary<string, string>();
+        PhoneMenu.Initialize();
         do
         {
             Menu.сommand = Console.ReadLine();
-            var call = "";
+            string call = "";
             switch (Menu.сommand)
             {
                 case "add":
-                    Console.WriteLine("Adding new contact...\n");
-                    Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
-                    phoneBook.Add(Console.ReadLine(), Console.ReadLine());
-                    Console.WriteLine("Succesfully added new contact.\n");
-                    break;
 
                 case "call":
                     Console.WriteLine("Choose contact or number to call\n");
@@ -40,9 +38,9 @@ class PhoneMenu
                     foreach (var Count in phoneBook)
                     {
                         Console.WriteLine($"{Count.Key}");
-                        сall = Console.ReadLine();
+                        Menu.сall = Console.ReadLine();
 
-                        if (сall == Count.Key)
+                        if (Menu.сall == Count.Key)
                         {
                             Console.WriteLine($"Calling {Count.Key}...");
                             Console.WriteLine("No respond...");
@@ -50,7 +48,7 @@ class PhoneMenu
                         }
                         else
                         {
-                            Console.WriteLine("Calling " + сall);
+                            Console.WriteLine("Calling " + Menu.сall);
                             Console.WriteLine("No respond...");
                             break;
                         }
@@ -64,40 +62,40 @@ class PhoneMenu
                     {
 
                         Console.WriteLine($"{Count.Key}");
-                        сall = Console.ReadLine();
+                        Menu.сall = Console.ReadLine();
 
-                        if (сall == Count.Key)
-                        {
-                            Console.WriteLine($"Type message for {Count.Key}:");
-                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
-                            Console.WriteLine("Message sent.");
-                            break;
-                            }
-                        
-                        if (сall == Count.Value)
+                        if (Menu.сall == Count.Key)
                         {
                             Console.WriteLine($"Type message for {Count.Key}:");
                             phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                             break;
                         }
-                        
-                        if (сall == probel)
-                            {
-                                break;
-                            }
-                        
+
+                        if (Menu.сall == Count.Value)
+                        {
+                            Console.WriteLine($"Type message for {Count.Key}:");
+                            phoneSms.Add(Console.ReadLine() + $" - to {Count.Key}", DateTime.Now.ToString("HH:mm:ss tt"));
+                            Console.WriteLine("Message sent.");
+                            break;
+                        }
+
+                        if (Menu.сall == Menu.probel)
+                        {
+                            break;
+                        }
+
                         else
                         {
                             Console.WriteLine("Type message for " + call);
-                            phoneSms.Add(Console.ReadLine() + call, DateTime.Now.ToString("HH:mm:ss tt"));
+                            phoneSms.Add(Console.ReadLine() + "+7" + call, DateTime.Now.ToString("HH:mm:ss tt"));
                             Console.WriteLine("Message sent.");
                         }
                         break;
-                        
+
                     }
                     break;
-                    
+
 
                 case "":
                     break;
@@ -114,7 +112,7 @@ class PhoneMenu
                     continue;
 
             }
-        } while (merlok == 0);
+        } while (true);
     }
 }
 
