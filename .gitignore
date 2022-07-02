@@ -1,0 +1,6 @@
+*.sln
+*.config
+*.csproj
+bin/
+obj/
+.vs/

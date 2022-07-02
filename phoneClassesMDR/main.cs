@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 class Phone
@@ -31,7 +31,7 @@ class PhoneMenu
         Phone.Number = Console.ReadLine();
         if (Phone.Number.All(char.IsDigit) == false || Phone.Number.Length > 9 || Phone.Number.Length < 9)
         {
-                Console.WriteLine("An error was made when entering the number!");
+            Console.WriteLine("An error was made when entering the number!");
         }
 
         else
