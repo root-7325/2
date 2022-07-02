@@ -5,14 +5,12 @@ class Phone
     public string сommand;
     public static Dictionary<string, string> phoneBook = new Dictionary<string, string>();
     public static Dictionary<string, string> phoneSms = new Dictionary<string, string>();
-    internal string сall;
+    public string сall;
 }
 
 class PhoneMenu
 {
-    private static string сall;
     private static string probel;
-    private static string call;
 
     static void Initialize()
     {
@@ -53,14 +51,14 @@ class PhoneMenu
             }
         }
     }
-    
+
+    static string сall = "";
     static void Sms()
     {
         Console.WriteLine("Choose contact or number to send sms\n");
 
         foreach (var Count in Phone.phoneBook)
         {
-
             Console.WriteLine($"{Count.Key}");
             сall = Console.ReadLine();
 
@@ -85,12 +83,6 @@ class PhoneMenu
                 break;
             }
 
-            else
-            {
-                Console.WriteLine("Type message for " + call);
-                Phone.phoneSms.Add(Console.ReadLine() + "+7" + call, DateTime.Now.ToString("HH:mm:ss tt"));
-                Console.WriteLine("Message sent.");
-            }
             break;
 
         }
