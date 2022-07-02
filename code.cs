@@ -91,11 +91,6 @@ class PhoneMenu
             Console.WriteLine($"{Count.Key}");
             сall = Console.ReadLine();
 
-            if (сall.All(char.IsDigit) == false || сall.Length > 9 || сall.Length < 9)
-            {
-                Console.WriteLine("An error was made when entering the number!");
-                break;
-            }
 
             if (сall == Count.Key)
             {
@@ -115,6 +110,12 @@ class PhoneMenu
 
             if (сall == Phone.probel)
             {
+                break;
+            }
+
+            if (сall.All(char.IsDigit) == false || сall.Length > 9 || сall.Length < 9)
+            {
+                Console.WriteLine("An error was made when entering the number!");
                 break;
             }
 
