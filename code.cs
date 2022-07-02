@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 class Phone
 {
     public string сommand;
+    public static string probel;
+    public static string a1;
+    public static string a2;
     public static Dictionary<string, string> phoneBook = new Dictionary<string, string>();
     public static Dictionary<string, string> phoneSms = new Dictionary<string, string>();
-    public string сall;
 }
 
 class PhoneMenu
 {
-    private static string probel;
 
     static void Initialize()
     {
@@ -25,8 +27,19 @@ class PhoneMenu
     {
         Console.WriteLine("Adding new contact...\n");
         Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
-        Phone.phoneBook.Add(Console.ReadLine(), Console.ReadLine());
-        Console.WriteLine("Succesfully added new contact.\n");
+        Phone.a1 = Console.ReadLine();
+        Phone.a2 = Console.ReadLine();
+        if (Phone.a2.All(char.IsDigit) == false || Phone.a2.Length > 10)
+        {
+                Console.WriteLine("Ti che eblan");
+        }
+
+        else
+        {
+            Phone.phoneBook.Add(Phone.a1, Phone.a2);
+            Console.WriteLine("Succesfully added new contact.\n");
+        }
+
     }
     static void Call()
     {
@@ -43,12 +56,14 @@ class PhoneMenu
                 Console.WriteLine("No respond...");
                 break;
             }
+
             else
             {
                 Console.WriteLine("Calling " + сall);
                 Console.WriteLine("No respond...");
                 break;
             }
+
         }
     }
 
@@ -78,11 +93,17 @@ class PhoneMenu
                 break;
             }
 
-            if (сall == probel)
+            if (сall == Phone.probel)
             {
                 break;
             }
 
+            else
+            {
+                Console.WriteLine("Type message for +7" + сall);
+                Phone.phoneSms.Add(Console.ReadLine() + "+7" + сall, DateTime.Now.ToString("HH:mm:ss tt"));
+                Console.WriteLine("Message sent.");
+            }
             break;
 
         }
