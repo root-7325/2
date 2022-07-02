@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-class Phone
+internal class Phone
 {
-    public string сommand;
-    public static string probel;
-    public static string Name;
-    public static string Number;
-    public static Dictionary<string, string> phoneBook = new Dictionary<string, string>();
-    public static Dictionary<string, string> phoneSms = new Dictionary<string, string>();
+    protected static string сommand = "";
+    protected static string probel = "";
+    protected static string Name = "";
+    protected static string Number = "";
+    protected static Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+    protected static Dictionary<string, string> phoneSms = new Dictionary<string, string>();
 }
 
-class PhoneMenu
+internal class PhoneMenu : Phone
 {
 
-    static void Initialize()
+    static private void Initialize()
     {
 
-        Console.WriteLine("               phone   ");
-        Console.WriteLine("Write add to add new contact");
-        Console.WriteLine("Write call to call someone");
-        Console.WriteLine("Write sms to text someone");
-        Console.WriteLine("Write list to show each message, which you have sent");
+        Console.WriteLine("\tphone");
+        Console.WriteLine("Write 'add' to add new contact");
+        Console.WriteLine("Write 'call' to call someone");
+        Console.WriteLine("Write 'sms' to text someone");
+        Console.WriteLine("Write 'list' to show each message, which you have sent");
     }
-    static void Add()
+    static private void Add()
     {
         Console.WriteLine("Adding new contact...\n");
         Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
@@ -41,7 +41,7 @@ class PhoneMenu
         }
 
     }
-    static void Call()
+    static private void Call()
     {
         Console.WriteLine("Choose contact or number to call\n");
 
@@ -82,7 +82,7 @@ class PhoneMenu
     }
 
     static string сall = "";
-    static void Sms()
+    static private void Sms()
     {
         Console.WriteLine("Choose contact or number to send sms\n");
 
@@ -129,21 +129,20 @@ class PhoneMenu
 
         }
     }
-    static void List()
+    static private void List()
     {
         foreach (var Count in Phone.phoneSms)
         {
             Console.WriteLine($"{Count.Key} {Count.Value}");
         }
     }
-    static void Main()
+    static public void Main()
     {
-        Phone Menu = new Phone();
         PhoneMenu.Initialize();
         do
         {
-            Menu.сommand = Console.ReadLine();
-            switch (Menu.сommand)
+            Phone.сommand = Console.ReadLine();
+            switch (Phone.сommand)
             {
                 case "add":
                     PhoneMenu.Add();
