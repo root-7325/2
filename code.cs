@@ -31,7 +31,7 @@ class PhoneMenu
         Phone.a2 = Console.ReadLine();
         if (Phone.a2.All(char.IsDigit) == false || Phone.a2.Length > 10)
         {
-                Console.WriteLine("Ti che eblan");
+                Console.WriteLine("An error was made when entering the number!");
         }
 
         else
