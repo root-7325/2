@@ -29,7 +29,7 @@ class PhoneMenu
         Console.WriteLine("Write name of contact & number in +7<10 numbers> format. ");
         Phone.a1 = Console.ReadLine();
         Phone.a2 = Console.ReadLine();
-        if (Phone.a2.All(char.IsDigit) == false || Phone.a2.Length > 10)
+        if (Phone.a2.All(char.IsDigit) == false || Phone.a2.Length > 9 || Phone.a2.Length < 9)
         {
                 Console.WriteLine("An error was made when entering the number!");
         }
